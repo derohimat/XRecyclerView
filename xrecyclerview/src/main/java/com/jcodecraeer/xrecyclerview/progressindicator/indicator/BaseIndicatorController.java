@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
+
 import java.util.List;
 
 /**
@@ -16,63 +17,63 @@ public abstract class BaseIndicatorController {
 
     private List<Animator> mAnimators;
 
-    public void destroy(){
+    public void destroy() {
         mTarget = null;
         releaseAnimations();
         mAnimators = null;
     }
 
-    public void setTarget(View target){
-        this.mTarget=target;
-    }
-
-    public View getTarget(){
+    public View getTarget() {
         return mTarget;
     }
 
+    public void setTarget(View target) {
+        this.mTarget = target;
+    }
 
-    public int getWidth(){
-        if(mTarget == null){
+    public int getWidth() {
+        if (mTarget == null) {
             return 0;
         }
         return mTarget.getWidth();
     }
 
-    public int getHeight(){
-        if(mTarget == null){
+    public int getHeight() {
+        if (mTarget == null) {
             return 0;
         }
         return mTarget.getHeight();
     }
 
-    public void postInvalidate(){
-        if(mTarget != null){
+    public void postInvalidate() {
+        if (mTarget != null) {
             mTarget.postInvalidate();
         }
     }
 
     /**
      * draw indicator
+     *
      * @param canvas
      * @param paint
      */
-    public abstract void draw(Canvas canvas,Paint paint);
+    public abstract void draw(Canvas canvas, Paint paint);
 
     /**
      * create animation or animations
      */
     public abstract List<Animator> createAnimation();
 
-    public void initAnimation(){
-        mAnimators=createAnimation();
+    public void initAnimation() {
+        mAnimators = createAnimation();
     }
 
     // add by lgh
-    private void releaseAnimations(){
-        if (mAnimators==null){
+    private void releaseAnimations() {
+        if (mAnimators == null) {
             return;
         }
-        int count=mAnimators.size();
+        int count = mAnimators.size();
         for (int i = 0; i < count; i++) {
             Animator animator = mAnimators.get(i);
             animator.cancel();
@@ -87,29 +88,30 @@ public abstract class BaseIndicatorController {
      * view was be Visible or Gone or Invisible.
      * make animation to cancel when target view
      * be onDetachedFromWindow.
+     *
      * @param animStatus
      */
-    public void setAnimationStatus(AnimStatus animStatus){
-        if (mAnimators==null){
+    public void setAnimationStatus(AnimStatus animStatus) {
+        if (mAnimators == null) {
             return;
         }
-        int count=mAnimators.size();
+        int count = mAnimators.size();
         for (int i = 0; i < count; i++) {
-            Animator animator=mAnimators.get(i);
-            boolean isRunning=animator.isRunning();
-            switch (animStatus){
+            Animator animator = mAnimators.get(i);
+            boolean isRunning = animator.isRunning();
+            switch (animStatus) {
                 case START:
-                    if (!isRunning){
+                    if (!isRunning) {
                         animator.start();
                     }
                     break;
                 case END:
-                    if (isRunning){
+                    if (isRunning) {
                         animator.end();
                     }
                     break;
                 case CANCEL:
-                    if (isRunning){
+                    if (isRunning) {
                         animator.cancel();
                     }
                     break;
@@ -118,10 +120,9 @@ public abstract class BaseIndicatorController {
     }
 
 
-    public enum AnimStatus{
-        START,END,CANCEL
+    public enum AnimStatus {
+        START, END, CANCEL
     }
-
 
 
 }
