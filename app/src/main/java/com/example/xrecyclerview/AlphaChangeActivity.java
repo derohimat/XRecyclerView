@@ -30,7 +30,7 @@ public class AlphaChangeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alpha_change_layout);
 
-        mRecyclerView = (XRecyclerView)this.findViewById(R.id.recyclerview);
+        mRecyclerView = this.findViewById(R.id.recyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -41,7 +41,7 @@ public class AlphaChangeActivity extends AppCompatActivity {
 
         /** ----- alpha change listen test start ----- */
         final RelativeLayout alpha_title
-                = (RelativeLayout) findViewById(R.id.alpha_title);
+                = findViewById(R.id.alpha_title);
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,12 +70,12 @@ public class AlphaChangeActivity extends AppCompatActivity {
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-                refreshTime ++;
+                refreshTime++;
                 times = 0;
-                new Handler().postDelayed(new Runnable(){
+                new Handler().postDelayed(new Runnable() {
                     public void run() {
                         listData.clear();
-                        for(int i = 0; i < 15 ;i++){
+                        for (int i = 0; i < 15; i++) {
                             listData.add("item" + i + "after " + refreshTime + " times of refresh");
                         }
                         mAdapter.notifyDataSetChanged();
@@ -87,11 +87,11 @@ public class AlphaChangeActivity extends AppCompatActivity {
 
             @Override
             public void onLoadMore() {
-                if(times < 2){
-                    new Handler().postDelayed(new Runnable(){
+                if (times < 2) {
+                    new Handler().postDelayed(new Runnable() {
                         public void run() {
-                            for(int i = 0; i < 15 ;i++){
-                                listData.add("item" + (1 + listData.size() ) );
+                            for (int i = 0; i < 15; i++) {
+                                listData.add("item" + (1 + listData.size()));
                             }
                             mRecyclerView.loadMoreComplete();
                             mAdapter.notifyDataSetChanged();
@@ -100,19 +100,19 @@ public class AlphaChangeActivity extends AppCompatActivity {
                 } else {
                     new Handler().postDelayed(new Runnable() {
                         public void run() {
-                            for(int i = 0; i < 9 ;i++){
-                                listData.add("item" + (1 + listData.size() ) );
+                            for (int i = 0; i < 9; i++) {
+                                listData.add("item" + (1 + listData.size()));
                             }
                             mRecyclerView.setNoMore(true);
                             mAdapter.notifyDataSetChanged();
                         }
                     }, 1000);
                 }
-                times ++;
+                times++;
             }
         });
 
-        listData = new  ArrayList<String>();
+        listData = new ArrayList<String>();
         mAdapter = new MyAdapter(listData);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.refresh();

@@ -13,25 +13,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void gotoStickyScrollLinearActivity(View v){
+    public void gotoStickyScrollLinearActivity(View v) {
         Intent intent = new Intent();
-        intent.setClass(this,LinearStickyScrollActivity.class);
+        intent.setClass(this, LinearStickyScrollActivity.class);
         startActivity(intent);
     }
 
     public void gotoLinearActivity(View v) {
         Intent intent = new Intent();
-        intent.setClass(this,LinearActivity.class);
+        intent.setClass(this, LinearActivity.class);
         startActivity(intent);
     }
+
     public void gotoGridActivity(View v) {
         Intent intent = new Intent();
-        intent.setClass(this,GridActivity.class);
+        intent.setClass(this, GridActivity.class);
         startActivity(intent);
     }
+
     public void gotoStaggeredGridActivity(View v) {
         Intent intent = new Intent();
-        intent.setClass(this,StaggeredGridActivity.class);
+        intent.setClass(this, StaggeredGridActivity.class);
         startActivity(intent);
     }
 
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         intent.setClass(this, MultiHeaderActivity.class);
         startActivity(intent);
     }
+
     public void gotoItemDecorationActivity(View v) {
         Intent intent = new Intent();
         intent.setClass(this, ItemDecorationActivity.class);

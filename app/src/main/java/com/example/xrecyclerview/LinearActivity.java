@@ -27,7 +27,7 @@ public class LinearActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         // release memory
-        if(mRecyclerView != null){
+        if (mRecyclerView != null) {
             mRecyclerView.destroy();
             mRecyclerView = null;
         }
@@ -37,11 +37,11 @@ public class LinearActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recyclerview);
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mRecyclerView = (XRecyclerView)this.findViewById(R.id.recyclerview);
+        mRecyclerView = this.findViewById(R.id.recyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -53,7 +53,7 @@ public class LinearActivity extends AppCompatActivity {
         mRecyclerView
                 .getDefaultRefreshHeaderView()
                 .setRefreshTimeVisible(true);
-        View header = LayoutInflater.from(this).inflate(R.layout.recyclerview_header, (ViewGroup)findViewById(android.R.id.content),false);
+        View header = LayoutInflater.from(this).inflate(R.layout.recyclerview_header, (ViewGroup) findViewById(android.R.id.content), false);
         mRecyclerView.addHeaderView(header);
 
         mRecyclerView.getDefaultFootView().setLoadingHint("自定义加载中提示");
@@ -87,16 +87,16 @@ public class LinearActivity extends AppCompatActivity {
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-                refreshTime ++;
+                refreshTime++;
                 times = 0;
-                new Handler().postDelayed(new Runnable(){
+                new Handler().postDelayed(new Runnable() {
                     public void run() {
                         listData.clear();
-                        for(int i = 0; i < itemLimit ;i++){
+                        for (int i = 0; i < itemLimit; i++) {
                             listData.add("item" + i + "after " + refreshTime + " times of refresh");
                         }
                         mAdapter.notifyDataSetChanged();
-                        if(mRecyclerView != null)
+                        if (mRecyclerView != null)
                             mRecyclerView.refreshComplete();
                     }
 
@@ -105,14 +105,14 @@ public class LinearActivity extends AppCompatActivity {
 
             @Override
             public void onLoadMore() {
-                Log.e("aaaaa","call onLoadMore");
-                if(times < 2){
-                    new Handler().postDelayed(new Runnable(){
+                Log.e("aaaaa", "call onLoadMore");
+                if (times < 2) {
+                    new Handler().postDelayed(new Runnable() {
                         public void run() {
-                            for(int i = 0; i < itemLimit ;i++){
-                                listData.add("item" + (1 + listData.size() ) );
+                            for (int i = 0; i < itemLimit; i++) {
+                                listData.add("item" + (1 + listData.size()));
                             }
-                            if(mRecyclerView != null) {
+                            if (mRecyclerView != null) {
                                 mRecyclerView.loadMoreComplete();
                                 mAdapter.notifyDataSetChanged();
                             }
@@ -121,21 +121,21 @@ public class LinearActivity extends AppCompatActivity {
                 } else {
                     new Handler().postDelayed(new Runnable() {
                         public void run() {
-                            for(int i = 0; i < itemLimit ;i++){
-                                listData.add("item" + (1 + listData.size() ) );
+                            for (int i = 0; i < itemLimit; i++) {
+                                listData.add("item" + (1 + listData.size()));
                             }
-                            if(mRecyclerView != null) {
+                            if (mRecyclerView != null) {
                                 mRecyclerView.setNoMore(true);
                                 mAdapter.notifyDataSetChanged();
                             }
                         }
                     }, 1000);
                 }
-                times ++;
+                times++;
             }
         });
 
-        listData = new  ArrayList<String>();
+        listData = new ArrayList<String>();
         mAdapter = new MyAdapter(listData);
         mAdapter.setClickCallBack(
                 new MyAdapter.ItemClickCallBack() {
@@ -143,7 +143,7 @@ public class LinearActivity extends AppCompatActivity {
                     public void onItemClick(int pos) {
                         // a demo for notifyItemRemoved
                         listData.remove(pos);
-                        mRecyclerView.notifyItemRemoved(listData,pos);
+                        mRecyclerView.notifyItemRemoved(listData, pos);
                     }
                 }
         );
@@ -161,13 +161,3 @@ public class LinearActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-
-
-
-
-
-
-
-
-
-

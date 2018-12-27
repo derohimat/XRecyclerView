@@ -40,12 +40,12 @@ public class LinearStickyScrollActivity extends AppCompatActivity {
         final View tabView = findViewById(R.id.tabView);
         final View content = findViewById(R.id.contentView);
         final StickyScrollLinearLayout s =
-                (StickyScrollLinearLayout) findViewById(R.id.StickyScrollLinearLayout);
+                findViewById(R.id.StickyScrollLinearLayout);
         s.addOnLayoutChangeListener(
                 new View.OnLayoutChangeListener() {
                     @Override
                     public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                        if(s.getContentView() != null)
+                        if (s.getContentView() != null)
                             return;
                         // 放在这里是为了等初始化结束后再添加，防止 height 获取 =0
                         // add from here just in cause they height==0
@@ -72,8 +72,8 @@ public class LinearStickyScrollActivity extends AppCompatActivity {
         );
     }
 
-    private void initXR(){
-        mRecyclerView = (XRecyclerView) findViewById(R.id.XRecyclerView);
+    private void initXR() {
+        mRecyclerView = findViewById(R.id.XRecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -92,11 +92,11 @@ public class LinearStickyScrollActivity extends AppCompatActivity {
 
             @Override
             public void onLoadMore() {
-                if(times < 2){
-                    new Handler().postDelayed(new Runnable(){
+                if (times < 2) {
+                    new Handler().postDelayed(new Runnable() {
                         public void run() {
-                            for(int i = 0; i < 10 ;i++){
-                                listData.add("item" + (1 + listData.size() ) );
+                            for (int i = 0; i < 10; i++) {
+                                listData.add("item" + (1 + listData.size()));
                             }
                             mRecyclerView.loadMoreComplete();
                             mAdapter.notifyDataSetChanged();
@@ -105,21 +105,21 @@ public class LinearStickyScrollActivity extends AppCompatActivity {
                 } else {
                     new Handler().postDelayed(new Runnable() {
                         public void run() {
-                            for(int i = 0; i < 10 ;i++){
-                                listData.add("item" + (1 + listData.size() ) );
+                            for (int i = 0; i < 10; i++) {
+                                listData.add("item" + (1 + listData.size()));
                             }
                             mRecyclerView.setNoMore(true);
                             mAdapter.notifyDataSetChanged();
                         }
                     }, 1000);
                 }
-                times ++;
+                times++;
             }
         });
 
-        listData = new  ArrayList<String>();
-        for(int i=0;i<20;i++){
-            listData.add(" data -- "+i);
+        listData = new ArrayList<String>();
+        for (int i = 0; i < 20; i++) {
+            listData.add(" data -- " + i);
         }
         mAdapter = new MyAdapter(listData);
         mAdapter.setClickCallBack(
@@ -128,7 +128,7 @@ public class LinearStickyScrollActivity extends AppCompatActivity {
                     public void onItemClick(int pos) {
                         // a demo for notifyItemRemoved
                         listData.remove(pos);
-                        mRecyclerView.notifyItemRemoved(listData,pos);
+                        mRecyclerView.notifyItemRemoved(listData, pos);
                     }
                 }
         );

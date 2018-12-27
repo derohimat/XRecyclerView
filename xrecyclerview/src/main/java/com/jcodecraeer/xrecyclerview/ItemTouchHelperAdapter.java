@@ -17,7 +17,6 @@ public interface ItemTouchHelperAdapter {
      *
      * @param fromPosition The start position of the moved item.
      * @param toPosition   Then resolved position of the moved item.
-     *
      * @see RecyclerView#getAdapterPositionFor(RecyclerView.ViewHolder)
      * @see RecyclerView.ViewHolder#getAdapterPosition()
      */
@@ -31,7 +30,6 @@ public interface ItemTouchHelperAdapter {
      * adjusting the underlying data to reflect this removal.
      *
      * @param position The position of the item dismissed.
-     *
      * @see RecyclerView#getAdapterPositionFor(RecyclerView.ViewHolder)
      * @see RecyclerView.ViewHolder#getAdapterPosition()
      */
