@@ -1,9 +1,12 @@
-# XRecyclerView
+# XRecyclerViewX
 a RecyclerView that implements pullrefresh , loadingmore and header featrues.you can use it like a standard RecyclerView.
 you don't need to implement a special adapter .qq 群478803619
+
+migrate to AndroidX
+
 Screenshots
 -----------
-![demo](https://github.com/jianghejie/XRecyclerView/blob/master/art/demo.gif)
+![demo](https://github.com/derohimat/XRecyclerViewX/blob/master/art/demo.gif)
 
 on real device it is much more smoother. 
 Usage
@@ -11,12 +14,12 @@ Usage
 ## gradle
 ```groovy
 // 1.5.9 is the main
-compile 'com.jcodecraeer:xrecyclerview:1.5.9'
+compile xrecyclerviewx
 ```
 just like a standard RecyclerView
 ```java
 LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+layoutManager.setOrientation(RecyclerView.VERTICAL);
 mRecyclerView.setLayoutManager(layoutManager);
 mRecyclerView.setAdapter(mAdapter);
 ```
@@ -71,7 +74,6 @@ s.addOnLayoutChangeListener(
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
                 if(s.getContentView() != null)
                     return;
-                // 放在这里是为了等初始化结束后再添加，防止 height 获取 =0
                 // add from here just in case they height==0
                 s.setInitInterface(
                         new StickyScrollLinearLayout.StickyScrollInitInterface() {
@@ -125,7 +127,7 @@ to notify that the refreshing work is done.
 
 here is what we get:
 
-![default](https://github.com/jianghejie/XRecyclerView/blob/master/art/default.gif)
+![default](https://github.com/derohimat/XRecyclerViewX/blob/master/art/default.gif)
 
 ## call refresh() manually(I change the previous setRefreshing() method to refresh() )
 
@@ -153,16 +155,16 @@ for example
 ```java
 mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
 ```
-![refreshloadingballspinfade](https://github.com/jianghejie/XRecyclerView/blob/master/art/refreshloadingballspinfade.gif)
+![refreshloadingballspinfade](https://github.com/derohimat/XRecyclerViewX/blob/master/art/refreshloadingballspinfade.gif)
 ```java
 mRecyclerView.setLaodingMoreProgressStyle(ProgressStyle.SquareSpin);
 ```
-![loadingmoresquarespin](https://github.com/jianghejie/XRecyclerView/blob/master/art/loadingmoresquarespin.gif)
+![loadingmoresquarespin](https://github.com/derohimat/XRecyclerViewX/blob/master/art/loadingmoresquarespin.gif)
 
 
 BallPulse  effect
 
-![BallPulse](https://github.com/jianghejie/XRecyclerView/blob/master/art/ballpulse.gif)
+![BallPulse](https://github.com/derohimat/XRecyclerViewX/blob/master/art/ballpulse.gif)
 
 all the effect can be get in the ProgressStyle class
 
@@ -202,14 +204,14 @@ public class ProgressStyle {
 #### refresh arrow icon
 we provide a default arrow icon:
 
-![ic_pulltorefresh_arrow](https://github.com/jianghejie/XRecyclerView/blob/master/art/ic_pulltorefresh_arrow.png)
+![ic_pulltorefresh_arrow](https://github.com/derohimat/XRecyclerViewX/blob/master/art/ic_pulltorefresh_arrow.png)
 
 but if you don't like it,you can replace it with any other icon  you want.
 just call
 ```java
 mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
 ```
-![customarrow](https://github.com/jianghejie/XRecyclerView/blob/master/art/customarrow.gif)
+![customarrow](https://github.com/derohimat/XRecyclerViewX/blob/master/art/customarrow.gif)
 ### disable refresh and load more featrue
 if you don't want the refresh and load more featrue(in that case,you probably dont'n need the lib neither),you can call
 ```java
@@ -238,7 +240,7 @@ mRecyclerView.addHeaderView(header1);
 License
 -------
 
-    Copyright 2015 jianghejie
+    Copyright 2018 derohimat
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

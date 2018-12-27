@@ -3,7 +3,7 @@
                 android:layout_height="match_parent"
     >
 
-    <com.jcodecraeer.xrecyclerview.XRecyclerView
+    <com.derohimat.xrecyclerviewx.XRecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"/>

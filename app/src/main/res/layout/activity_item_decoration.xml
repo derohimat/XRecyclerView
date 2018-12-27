@@ -4,6 +4,6 @@
                                              android:id="@+id/activity_item_decoration"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
-                                             tools:context="com.example.xrecyclerview.ItemDecorationActivity">
+                                             tools:context="com.example.xrecyclerviewx.ItemDecorationActivity">
 
 </android.support.constraint.ConstraintLayout>
